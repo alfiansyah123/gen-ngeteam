@@ -22,6 +22,11 @@
   to = "/.netlify/functions/add-domain"
   status = 200
 
+[[redirects]]
+  from = "/api/login"
+  to = "/.netlify/functions/login"
+  status = 200
+
 # All other paths go through redirect function (it will handle slugs vs SPA)
 [[redirects]]
   from = "/*"

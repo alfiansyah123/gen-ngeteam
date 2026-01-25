@@ -3,8 +3,11 @@ import { useState, useEffect } from 'react'
 import './App.css'
 import { fetchDomains, saveLink, addDomain } from './services/api'
 import CursorParticles from './components/CursorParticles'
+import Login from './components/Login'
 
 function App() {
+  const [isLoggedIn, setIsLoggedIn] = useState(false)
+  const [checkingAuth, setCheckingAuth] = useState(true)
   const [activeTab, setActiveTab] = useState('generator')
 
   // Generator State
@@ -25,6 +28,15 @@ function App() {
 
   // History State
   const [history, setHistory] = useState([])
+
+  // Check if already logged in
+  useEffect(() => {
+    const token = localStorage.getItem('auth_token')
+    if (token) {
+      setIsLoggedIn(true)
+    }
+    setCheckingAuth(false)
+  }, [])
 
   // Load History from LocalStorage
   useEffect(() => {
@@ -183,12 +195,55 @@ function App() {
     setCopied(false)
   }
 
+  const handleLogout = () => {
+    localStorage.removeItem('auth_token')
+    localStorage.removeItem('auth_user')
+    setIsLoggedIn(false)
+  }
+
+  // Show loading while checking auth
+  if (checkingAuth) {
+    return (
+      <div className="container" style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', height: '100vh' }}>
+        <div className="spinner"></div>
+      </div>
+    )
+  }
+
+  // Show login if not authenticated
+  if (!isLoggedIn) {
+    return (
+      <>
+        <CursorParticles />
+        <Login onLogin={() => setIsLoggedIn(true)} />
+      </>
+    )
+  }
+
   return (
     <div className="container">
       <CursorParticles />
       {/* Header */}
       <header className="header">
-        <h1 className="title">NGE-team</h1>
+        <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+          <div></div>
+          <h1 className="title">NGE-team</h1>
+          <button
+            onClick={handleLogout}
+            style={{
+              background: 'rgba(239, 68, 68, 0.1)',
+              border: '1px solid rgba(239, 68, 68, 0.3)',
+              color: '#ef4444',
+              padding: '8px 16px',
+              borderRadius: '8px',
+              cursor: 'pointer',
+              fontSize: '0.85rem',
+              fontWeight: '500'
+            }}
+          >
+            Logout
+          </button>
+        </div>
         <p className="subtitle">
           Generate multiple secure <span className="highlight">links</span> with custom OG Meta tags in seconds.
         </p>
