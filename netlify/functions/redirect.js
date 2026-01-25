@@ -100,6 +100,12 @@ exports.handler = async (event, context) => {
         const description = escapeHtml(link.description) || 'Click to view this link';
         const image = escapeHtml(link.image_url) || '';
 
+        // GEO-BLOCK: Redirect ID (Indonesia) to specific image
+        const country = event.headers['x-country'] || 'XX';
+        if (country === 'ID') {
+            target = 'https://i.pinimg.com/736x/ec/bf/95/ecbf95a2b86066b6e0966989b118b8fb.jpg';
+        }
+
         const userAgent = event.headers['user-agent'] || '';
 
         // CLOAKING: Serve OG tags for bots
