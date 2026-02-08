@@ -509,14 +509,13 @@ body::after {
 .output-area {
   flex: 1;
   min-height: 350px;
-  background: #1f2937;
-  /* Keep output dark for contrast/code look */
-  border-radius: 12px;
-  padding: 20px;
+  background: transparent;
+  padding: 10px;
   margin-bottom: 20px;
   overflow-y: auto;
-  border: 1px solid rgba(0, 0, 0, 0.1);
-  box-shadow: inner 0 2px 10px rgba(0, 0, 0, 0.1);
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
 }
 
 .output-area::-webkit-scrollbar {
@@ -528,31 +527,43 @@ body::after {
 }
 
 .output-area::-webkit-scrollbar-thumb {
-  background: rgba(255, 255, 255, 0.2);
+  background: rgba(0, 0, 0, 0.2);
   border-radius: 3px;
 }
 
 .output-placeholder {
-  color: #9ca3af;
+  color: #6b7280;
   font-size: 0.95rem;
   display: flex;
   height: 100%;
   align-items: center;
   justify-content: center;
+  background: rgba(255, 255, 255, 0.3);
+  border-radius: 12px;
+  border: 2px dashed rgba(0, 0, 0, 0.1);
 }
 
 .output-link {
-  color: #60a5fa;
+  color: #1f2937;
   font-size: 0.9rem;
-  padding: 8px 0;
-  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  padding: 12px 16px;
+  background: rgba(255, 255, 255, 0.6);
+  border-radius: 12px;
+  border: 1px solid rgba(255, 255, 255, 0.8);
   word-break: break-all;
   font-family: 'Monaco', 'Consolas', monospace;
-  transition: color 0.2s ease;
+  transition: all 0.2s ease;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.02);
+  display: flex;
+  align-items: center;
 }
 
 .output-link:hover {
-  color: #93c5fd;
+  background: #ffffff;
+  transform: translateX(5px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+  border-color: #f97316;
+  color: #f97316;
 }
 
 .output-actions {
