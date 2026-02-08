@@ -64,7 +64,7 @@ const Reports = () => {
             <div className="reports-header">
                 <h2>Traffic Reports</h2>
                 <div className="period-filters">
-                    {['today', 'yesterday', 'week', 'all'].map((p) => (
+                    {['today', 'yesterday'].map((p) => (
                         <button
                             key={p}
                             className={`filter-btn ${period === p ? 'active' : ''}`}
