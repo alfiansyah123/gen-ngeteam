@@ -105,10 +105,10 @@
     color: #4b5563;
 }
 
-.slug-cell {
+.url-cell {
     color: #f97316;
     font-weight: 500;
-    max-width: 200px;
+    max-width: 250px;
     overflow: hidden;
     text-overflow: ellipsis;
     white-space: nowrap;

@@ -99,7 +99,8 @@ const Reports = () => {
                                     <th>Country</th>
                                     <th>OS</th>
                                     <th>IP Address</th>
-                                    <th>Slug</th>
+                                    <th>IP Address</th>
+                                    <th>Target URL</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -120,7 +121,7 @@ const Reports = () => {
                                             </div>
                                         </td>
                                         <td className="mono">{click.ip}</td>
-                                        <td className="slug-cell" title={click.originalUrl}>{click.slug}</td>
+                                        <td className="url-cell" title={click.originalUrl}>{click.originalUrl}</td>
                                     </tr>
                                 ))}
                             </tbody>
